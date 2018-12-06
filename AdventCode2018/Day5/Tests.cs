@@ -30,7 +30,7 @@ namespace AdventCode2018.Day5
         }
 
         [Test]
-        public void TestSolution()
+        public void FindSolutionToPart1()
         {
             string content;
             using (var stream = new FileStream("Day5/adventofcode.com_2018_day_5_input.txt", FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -48,7 +48,7 @@ namespace AdventCode2018.Day5
         }
 
         [Test]
-        public void TestFindShortestSolution()
+        public void FindSolutionToPart2()
         {
             string content;
             using (var stream = new FileStream("Day5/adventofcode.com_2018_day_5_input.txt", FileMode.Open, FileAccess.Read, FileShare.Read))
