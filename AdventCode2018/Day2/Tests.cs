@@ -18,7 +18,7 @@ namespace AdventCode2018.Day2
         public int TestAlgorithm(params string[] ids)
         {
             var scanner = new InventoryScanner();
-            var checksum = scanner.ScanBox(ids);
+            var checksum = scanner.Checksum(ids);
             return checksum;
         }
 
@@ -38,7 +38,7 @@ namespace AdventCode2018.Day2
             }
 
             var scanner = new InventoryScanner();
-            var checksum = scanner.ScanBox(box.ToArray());
+            var checksum = scanner.Checksum(box.ToArray());
 
             Console.WriteLine(checksum);
         }
@@ -46,6 +46,25 @@ namespace AdventCode2018.Day2
         [Test]
         public void FindSolutionToPart2()
         {
+            var box = new List<string>();
+            using (var stream = new FileStream("day2/input.txt", FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var reader = new StreamReader(stream);
+
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    box.Add(line);
+                }
+            }
+
+            var scanner = new InventoryScanner();
+            var matches = scanner.FindPotentialMatches(box.ToArray());
+
+            foreach (var match in matches)
+            {
+                Console.WriteLine(match);
+            }
         }
     }
 }
