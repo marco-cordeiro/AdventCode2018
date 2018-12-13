@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using AdventCode2018.Day7;
+using System.Text;
 using NUnit.Framework;
 
 namespace AdventCode2018.Day8
@@ -10,36 +7,49 @@ namespace AdventCode2018.Day8
     public class Tests
     {
         [Test]
-        [TestCase("Step B must be finished before step G can begin.", ExpectedResult = "GB")]
+        [TestCase("1 1 0 2 4 78 8", ExpectedResult = 90)]
+        [TestCase("2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2", ExpectedResult = 138)]
 
-        public string TestDependencyLoader(string line)
+        public int TestChecksum(string line)
         {
-            var magician = new InstructionMagician();
-            magician.Load(new[] {line});
+            var manager = new LicenseManager();
+            manager.Load(new MemoryStream(Encoding.UTF8.GetBytes(line)));
 
-            return magician.SortInstructions();
+            return manager.Checksum();
+        }
+
+        [Test]
+        [TestCase("1 1 0 2 4 78 1", ExpectedResult = 82)]
+        [TestCase("2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2", ExpectedResult = 66)]
+
+        public int TestCalculateChecksum(string line)
+        {
+            var manager = new LicenseManager();
+            manager.Load(new MemoryStream(Encoding.UTF8.GetBytes(line)));
+
+            return manager.CalculateChecksum();
         }
 
         [Test]
         public void FindSolutionToPart1()
         {
-            var magician = new InstructionMagician();
-            magician.Load("Day7/input.txt");
+            var manager = new LicenseManager();
+            manager.Load("Day8/input.txt");
 
-            var instructions = magician.SortInstructions();
+            var result = manager.Checksum();
 
-            Assert.That(instructions, Is.EqualTo("BGJCNLQUYIFMOEZTADKSPVXRHW"));
+            Assert.That(result, Is.EqualTo(36627));
         }
 
         [Test]
         public void FindSolutionToPart2()
         {
-            var magician = new InstructionMagician();
-            magician.Load("Day7/input.txt");
+            var manager = new LicenseManager();
+            manager.Load("Day8/input.txt");
 
-            var instructions = magician.CalculateConstructionTime(5);
+            var result = manager.CalculateChecksum();
 
-            Assert.That(instructions, Is.EqualTo(1017));
+            Assert.That(result, Is.EqualTo(16695));
         }
     }
 }
