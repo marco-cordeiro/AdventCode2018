@@ -8,7 +8,7 @@ namespace AdventCode2018.Day3
     public class Tests
     { 
         [Test]
-        [TestCase("#1 @ 1,1: 2x2", "#2 @ 2,2: 2x2", ExpectedResult = 2)]
+        [TestCase("#1 @ 1,1: 2x2", "#2 @ 2,2: 2x2", ExpectedResult = 1)]
         public int TestAlgorithm(params string[] claims)
         {
             var fabric = new byte[10,10];
@@ -32,7 +32,7 @@ namespace AdventCode2018.Day3
 
             var overAllocatedArea = fabric.CheckOverAllocation();
 
-            Console.WriteLine(overAllocatedArea);
+            Assert.That(overAllocatedArea, Is.EqualTo(103482));
         }
 
         [Test]
@@ -44,13 +44,8 @@ namespace AdventCode2018.Day3
 
             fabric.Allocate(claimLedger);
 
-            foreach (var claim in claimLedger.Claims)
-            {
-                if (fabric.IsOverAllocated(claim)) continue;
-
-                Console.WriteLine(claim.Id);
-                break;
-            }
+            Assert.That(claimLedger.Claims.Count(x => !fabric.IsOverAllocated(x)), Is.EqualTo(1));
+            Assert.That(claimLedger.Claims.First(x => !fabric.IsOverAllocated(x)).Id, Is.EqualTo(686));
         }
     }
 }

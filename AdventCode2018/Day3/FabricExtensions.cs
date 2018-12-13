@@ -38,9 +38,9 @@ namespace AdventCode2018.Day3
 
         public static void Map(this byte[,] fabric)
         {
-            for (var x = 0; x < 1000; x++)
+            for (var x = 0; x < fabric.GetLength(0); x++)
             {
-                for (var y = 0; y < 1000; y++)
+                for (var y = 0; y < fabric.GetLength(0); y++)
                 {
                     Console.Write(Math.Min(fabric[x, y], (byte)9));
                 }
@@ -52,9 +52,9 @@ namespace AdventCode2018.Day3
         {
             var overAllocatedArea = 0;
 
-            for (var x = 0; x < 1000; x++)
+            for (var x = 0; x < fabric.GetLength(0); x++)
             {
-                for (var y = 0; y < 1000; y++)
+                for (var y = 0; y < fabric.GetLength(0); y++)
                 {
                     overAllocatedArea += fabric[x, y] > 1 ? 1 : 0;
                 }
