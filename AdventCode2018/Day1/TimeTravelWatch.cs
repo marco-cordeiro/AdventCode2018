@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 
 namespace AdventCode2018.Day1

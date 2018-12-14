@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Diagnostics;
-using System.Linq;
 using NUnit.Framework;
 
 namespace AdventCode2018.Day1

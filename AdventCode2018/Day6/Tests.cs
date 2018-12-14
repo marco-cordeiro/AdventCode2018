@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using AdventCode2018.Day3;
 using NUnit.Framework;
 
 namespace AdventCode2018.Day6
